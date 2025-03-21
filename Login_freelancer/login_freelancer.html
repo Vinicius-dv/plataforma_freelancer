@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça seu cadastro</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+    <style>
+        *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    list-style-type: none;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+header{
+    background-color: #F2FAFC;
+}
+.nav_itens{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.p_logo{
+    color: black;
+    font-size: 1.8em;
+    padding: 20px;
+    margin-left: 80px;
+    font-weight: bolder;
+}
+.ul_itens{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin-right: 80px;
+    font-size: 1.3em;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.ul_itens a{
+    color: black;
+    transition: color 0.5s;
+}
+
+.ul_itens a:hover{
+    color: #79DD97;
+}
+
+.ul_itens p{
+    color: black;
+    transition: color 0.5s;
+}
+
+.ul_itens p:hover{
+    color: #79DD97;
+}
+
+.menu_itens{
+    display: none;
+}
+
+#menu_hamburguer{
+    display: none;
+}
+
+.logout_btn{
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: color 0.5s;
+}
+
+.logout_btn:hover{
+    color: #79DD97;
+}
+
+
+@media (max-width: 1170px) {
+    .ul_itens {
+        display: none;
+    }
+
+    .p_logo {
+        font-size: 1.2em;
+        margin: 0px;
+    }
+
+    #menu_hamburguer {
+        color: white;
+        font-size: 1.5em;
+        display: block;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    .main_mobile {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+
+    .menu_itens {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -70%;
+        width: 70%;
+        height: 100%;
+        background-color: white;
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+
+    .menu_itens ul {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .menu_itens li {
+        margin: 20px 0;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    .ul_mobile a{
+        color: black;
+        transition: color 0.5s;
+    }
+    
+    .ul_mobile a:hover{
+        color: #79DD97;
+    }
+}
+
+.menu_itens.open {
+    left: 0;
+}
+
+.main_mobile.show {
+    display: block;
+}
+
+.form_cadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_cadastro input{
+    width: 90%;
+    margin: 10px 20px 0px 20px;
+    height: 50px;
+    padding-left: 10px;
+}
+
+body{
+    background-color: rgb(247, 245, 245);
+}
+.main_cadastro{
+    width: 500px;
+    height: auto;
+    background-color: white;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.desc_cadastro{
+    text-align: center;
+    padding: 30px 10% 10px 10%;
+}
+.desc_cadastro h1{
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+.radio_container{
+    padding: 8px 10% 10px 10%;
+}
+.radio_input_container p{
+    font-size: 15px;
+    margin-left: 5%;
+}
+
+.div_button{
+    text-align: center;
+}
+
+.button_cadastro{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width:450px;
+    height: 60px;
+    background-color: #48A65B;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button_cadastro:hover{
+    background-color: #48a65bcb;
+}
+
+@media (max-width: 1170px) {
+    .main_cadastro{
+        width: 100%;
+    }
+    .button_cadastro{
+        width: 90%;
+    }
+}
+
+    </style>
+    <header>
+        <nav style="background-color: rgba(241, 240, 240, 0.353);" class="nav_itens">
+            <p class="p_logo">Freela Jovem</p>
+            <ul class="ul_itens">
+                <li>
+                    <p class="login">Não Tem uma conta ?</p>
+                </li>
+                <li>
+                    <a class="login" href="../Cadastro/freelancer.html">Faça cadastro</a>
+                </li>     
+            </ul>
+            <span style="color: black;" class="menu_hamburguer" id="menu_hamburguer">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+        </nav>
+        <div class="main_mobile" id="main_mobile">
+            <div class="menu_itens" id="div_itens">
+                <ul class="ul_mobile">
+                    <li>
+                        <a class="login" href="../Cadastro/freelancer.html">Faça cadastro</a>
+                    </li>   
+                </ul>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main_cadastro">
+            <div class="desc_cadastro">
+                <h1>Faça login</h1>
+            </div>
+            
+            <form action="" class="form_cadastro">
+                <input type="text" name="nome" id="nome" placeholder="Nome Completo">
+                <input type="email" name="email" id="email" placeholder="Email Completo">
+                <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+            </form>
+
+
+            <div class="div_button">
+            <button class="button_cadastro" id="button_cadastro">Logar</button>
+            </div>
+            <div style="text-align: center;" id="mensagem"></div>
+        </div>
+    </main>
+</body>
+</html>
+<script>
+    const menuHamburguer = document.getElementById("menu_hamburguer")
+const mainMobile = document.getElementById("main_mobile")
+const menuItens = document.querySelector(".menu_itens")
+
+menuHamburguer.addEventListener("click", () => {
+    mainMobile.classList.toggle("show")
+    menuItens.classList.toggle("open")
+})
+
+mainMobile.addEventListener('click',(e)=>{
+    if(e.target ===mainMobile){
+        mainMobile.classList.remove('show')
+        menuItens.classList.remove("open")
+    }
+}) 
+const button_cadastro = document.getElementById('button_cadastro')
+button_cadastro.addEventListener('click',()=>{
+const nome = document.getElementById('nome').value
+const email = document.getElementById('email').value
+const senha = document.getElementById('senha').value
+const mensagem = document.getElementById('mensagem')
+if(nome ===''||email ===''||senha ===''){
+    mensagem.innerHTML = 'Complete o formulario'
+    mensagem.style.color = 'red'
+    return
+}
+fetch('http://localhost:3000/login_freelancer',{
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body:JSON.stringify({nome,email,senha,role:'freelancer'}),
+    credentials: 'include'       
+})
+.then(res=>res.json())
+.then((dados)=>{
+    if(dados.success){
+        mensagem.innerText = dados.message
+        mensagem.style.color = 'green'
+        window.location.href = '../Painel_freelancer/painel_freelancer.html'
+    }else{
+        mensagem.innerText = dados.message
+        mensagem.style.color = 'red'
+    }
+})
+.catch(error => {
+    console.error('Erro de rede:', error)
+    alert('Erro ao se conectar, ou você já tem uma conta com esse email!!!')
+})
+})
+</script>

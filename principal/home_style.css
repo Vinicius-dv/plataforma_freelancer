@@ -41,6 +41,15 @@ header{
     color: #79DD97;
 }
 
+.ul_itens p{
+    color: black;
+    transition: color 0.5s;
+}
+
+.ul_itens p:hover{
+    color: #79DD97;
+}
+
 .menu_itens{
     display: none;
 }

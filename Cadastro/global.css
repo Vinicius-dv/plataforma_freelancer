@@ -1,0 +1,212 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    list-style-type: none;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+header{
+    background-color: #F2FAFC;
+}
+.nav_itens{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.p_logo{
+    color: black;
+    font-size: 1.8em;
+    padding: 20px;
+    margin-left: 80px;
+    font-weight: bolder;
+}
+.ul_itens{
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin-right: 80px;
+    font-size: 1.3em;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.ul_itens a{
+    color: black;
+    transition: color 0.5s;
+}
+
+.ul_itens a:hover{
+    color: #79DD97;
+}
+
+.ul_itens p{
+    color: black;
+    transition: color 0.5s;
+}
+
+.ul_itens p:hover{
+    color: #79DD97;
+}
+
+.menu_itens{
+    display: none;
+}
+
+#menu_hamburguer{
+    display: none;
+}
+
+.logout_btn{
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: color 0.5s;
+}
+
+.logout_btn:hover{
+    color: #79DD97;
+}
+
+
+@media (max-width: 1170px) {
+    .ul_itens {
+        display: none;
+    }
+
+    .p_logo {
+        font-size: 1.2em;
+        margin: 0px;
+    }
+
+    #menu_hamburguer {
+        color: white;
+        font-size: 1.5em;
+        display: block;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    .main_mobile {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+
+    .menu_itens {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -70%;
+        width: 70%;
+        height: 100%;
+        background-color: white;
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+
+    .menu_itens ul {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .menu_itens li {
+        margin: 20px 0;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    .ul_mobile a{
+        color: black;
+        transition: color 0.5s;
+    }
+    
+    .ul_mobile a:hover{
+        color: #79DD97;
+    }
+}
+
+.menu_itens.open {
+    left: 0;
+}
+
+.main_mobile.show {
+    display: block;
+}
+
+.form_cadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_cadastro input{
+    width: 90%;
+    margin: 10px 20px 0px 20px;
+    height: 50px;
+    padding-left: 10px;
+}
+
+body{
+    background-color: rgb(247, 245, 245);
+}
+.main_cadastro{
+    width: 500px;
+    height: auto;
+    background-color: white;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.desc_cadastro{
+    text-align: center;
+    padding: 30px 10% 10px 10%;
+}
+.desc_cadastro h1{
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+.radio_container{
+    padding: 8px 10% 10px 10%;
+}
+.radio_input_container p{
+    font-size: 15px;
+    margin-left: 5%;
+}
+
+.div_button{
+    text-align: center;
+}
+
+.button_cadastro{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width:450px;
+    height: 60px;
+    background-color: #48A65B;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button_cadastro:hover{
+    background-color: #48a65bcb;
+}
+
+@media (max-width: 1170px) {
+    .main_cadastro{
+        width: 100%;
+    }
+    .button_cadastro{
+        width: 90%;
+    }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça seu cadastro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+    <header>
+        <nav style="background-color: rgba(241, 240, 240, 0.353);" class="nav_itens">
+            <p class="p_logo">Freela Jovem</p>
+            <ul class="ul_itens">
+                <li>
+                    <p class="login">Já Tem uma conta ?</p>
+                </li>
+                <li>
+                    <a class="login" href="../Login_freelancer/login_freelancer.html">Faça Login</a>
+                </li>          
+            </ul>
+            <span style="color: black;" class="menu_hamburguer" id="menu_hamburguer">
+                <i class="fa-solid fa-bars"></i>
+            </span>
+        </nav>
+        <div class="main_mobile" id="main_mobile">
+            <div class="menu_itens" id="div_itens">
+                <ul class="ul_mobile">
+                    <li>
+                        <a class="login" href="../Login_freelancer/login_freelancer.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main_cadastro">
+            <div class="desc_cadastro">
+                <h1>Criar Conta</h1>
+                <p>Seja Bem Vindo ao Freela Jovem! Diga-nos oque você está procurando</p>
+            </div>
+
+            <div id="radio_container" class="radio_container">
+                <input type="radio" name="tipo_cadastro" id="contrato">
+                <label for="contrato">Eu quero Contratar</label>
+                <div class="radio_input_container">
+                    <p>Publique a sua vaga e encontre freelancers incríveis.</p>
+                </div>
+            </div>
+
+            <div id="radio_container" class="radio_container">
+                <input type="radio" name="tipo_cadastro" id="freela">
+                <label for="freela">Eu quero Trabalhar</label>
+                <div class="radio_input_container">
+                    <p>Encontre projetos, seja contratado e ganhe dinheiro.</p>
+                </div>
+            </div>
+            <div class="div_button">
+            <button class="button_cadastro" id="button_cadastro">Continuar</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+<script src="Criar_conta.js"></script>
