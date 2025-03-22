@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Document</title>
 </head>
 <body>
-    <style>
-        *{
+<style>
+    *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -166,65 +167,24 @@ header{
 body{
     background-color: rgb(247, 245, 245);
 }
-.main_cadastro{
-    width: 500px;
-    height: auto;
-    background-color: white;
-    margin: auto;
-    margin-top: 100px;
-}
-
-.desc_cadastro{
-    text-align: center;
-    padding: 30px 10% 10px 10%;
-}
-.desc_cadastro h1{
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    font-weight: 400;
-}
-.radio_container{
-    padding: 8px 10% 10px 10%;
-}
-.radio_input_container p{
-    font-size: 15px;
-    margin-left: 5%;
-}
-
-.div_button{
-    text-align: center;
-}
-
-.button_cadastro{
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width:450px;
-    height: 60px;
-    background-color: #48A65B;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.button_cadastro:hover{
-    background-color: #48a65bcb;
-}
-
-@media (max-width: 1170px) {
-    .main_cadastro{
-        width: 100%;
-    }
-    .button_cadastro{
-        width: 90%;
-    }
-}
-
-    </style>
+</style>
     <header>
         <nav style="background-color: rgba(241, 240, 240, 0.353);" class="nav_itens">
             <p class="p_logo">Freela Jovem</p>
             <ul class="ul_itens">
+                <li>
+                    <a href="painel_contrato.html">Pagina Inicial</a>
+                </li>
+
+                <li>
+                    <a href="">Projetos</a>
+                </li>
+
+                
+                <li>
+                    <a href="">Perfil</a>
+                </li>
+
                 <li>
                     <a class="btn_logout" id="btn_logout">Sair</a>
                 </li>
@@ -237,17 +197,44 @@ body{
             <div class="menu_itens" id="div_itens">
                 <ul class="ul_mobile">
                     <li>
+                        <a href="painel_contrato.html">Pagina Inicial</a>
+                    </li>
+    
+                    <li>
+                        <a href="">Projetos</a>
+                    </li>
+    
+                    
+                    <li>
+                        <a href="">Perfil</a>
+                    </li>
+    
+                    <li>
                         <a class="btn_logout" id="btn_logout">Sair</a>
                     </li>
                 </ul>
             </div>
         </div>
     </header>
-    <h1>você fez o login como contratante com sucesso</h1>
 </body>
 </html>
 
 <script>
+const menuHamburguer = document.getElementById("menu_hamburguer")
+const mainMobile = document.getElementById("main_mobile")
+const menuItens = document.querySelector(".menu_itens")
+
+menuHamburguer.addEventListener("click", () => {
+    mainMobile.classList.toggle("show")
+    menuItens.classList.toggle("open")
+})
+
+mainMobile.addEventListener('click',(e)=>{
+    if(e.target ===mainMobile){
+        mainMobile.classList.remove('show')
+        menuItens.classList.remove("open")
+    }
+}) 
     const btn_logout = document.getElementById('btn_logout')
     btn_logout.addEventListener('click',(e)=>{
         fetch('http://localhost:3000/logout',{
