@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Document</title>
     <style>
-        *{
+*{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -13,6 +14,7 @@
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
 }
+/*Estilos header*/
 header{
     background-color: #F2FAFC;
 }
@@ -148,75 +150,160 @@ header{
 .main_mobile.show {
     display: block;
 }
+ /*fim estilos header*/
 
-.form_cadastro{
+ /*estilos main*/
+ .main_painel{
     display: flex;
-    flex-direction: column;
-}
-
-.form_cadastro input{
-    width: 90%;
-    margin: 10px 20px 0px 20px;
-    height: 50px;
-    padding-left: 10px;
-}
-
-body{
-    background-color: rgb(247, 245, 245);
-}
-.main_cadastro{
-    width: 500px;
-    height: auto;
-    background-color: white;
     margin: auto;
-    margin-top: 100px;
-}
+    margin-top: 80px;
+    width: 800px;
+    height: auto;
+    flex-direction: column;
+ }
 
-.desc_cadastro{
+ .pai_estatiscas{
+    display: flex;
+    margin-bottom: 50px;
+ }
+
+ .din_estatistica{
+    background-color: #b4b7b8;
+    width: 580px;
+    height: auto;
+    padding: 25px;
+    margin-right: 5%;
     text-align: center;
-    padding: 30px 10% 10px 10%;
-}
-.desc_cadastro h1{
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    font-weight: 400;
-}
-.radio_container{
-    padding: 8px 10% 10px 10%;
-}
-.radio_input_container p{
-    font-size: 15px;
-    margin-left: 5%;
-}
+    color: rgb(255, 255, 255);
+ }
+ .din_estatistica i{
+    font-size: 1.8em;
+    margin-bottom: 10px;
+ }
 
-.div_button{
+ .proposta_enviada_estatistica{
+    background-color: #b4b7b8;
+    width: 580px;
+    height: auto;
+    padding: 25px;
+    margin-right: 5%;
     text-align: center;
-}
+    color: rgb(255, 255, 255);
+ }
 
-.button_cadastro{
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width:450px;
-    height: 60px;
-    background-color: #48A65B;
+ .proposta_enviada_estatistica i{
+    font-size: 1.8em;
+    margin-bottom: 10px;
+ }
+
+ .proposta_aceita_estatistica{
+    background-color: #b4b7b8;
+    width: 580px;
+    height: auto;
+    padding: 25px;
+    margin-right: 5%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+ }
+ .proposta_aceita_estatistica i{
+    font-size: 1.8em;
+    margin-bottom: 10px;
+ }
+
+ .views_perfil_estatistica{
+    background-color: #b4b7b8;
+    width: 580px;
+    height: auto;
+    padding: 25px;
+    margin-right: 5%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+ }
+ 
+ .views_perfil_estatistica i{
+    font-size: 1.8em;
+    margin-bottom: 10px;
+ }
+
+
+ .left{
+    width: 100%;
+ }
+ .perfil_card{
+    background-color: #e9eaeb;
+    margin-bottom: 100px;
+    height: 150px;
+ }
+
+ .top_perfil{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
+    padding: 10px;
+    background-color: #b4b7b8;
+ }
+
+ .top_perfil h1{
+    padding-left: 15px;
+    font-size: 1.3em;
+ }
+
+ .top_perfil a{
+    color: white;
+    padding-right: 15px;
+    transition: color 0.5s;
+ }
+
+ .top_perfil a:hover{
+    color: #8beda8;
+ }
+
+ .pai_estrela{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 18px;
+ }
+
+ .pai_estrela a{
+    color: rgb(7, 7, 190);
+    transition: color 0.5s;
+ }
+ .pai_estrela a:hover{
+    color: blue;
+ }
+
+ .metas_card{
+    background-color: #e9eaeb;
+    margin-bottom: 100px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ }
+
+.metas_card input{
+    margin-bottom: 30px;
+    height: 30px;
 }
 
-.button_cadastro:hover{
-    background-color: #48a65bcb;
+.metas_card ul li{
+    color: rgb(131, 128, 128);
+    padding-left: 18px;
+    padding-bottom: 7px;
 }
 
-@media (max-width: 1170px) {
-    .main_cadastro{
-        width: 100%;
-    }
-    .button_cadastro{
-        width: 90%;
-    }
-}
+ .top_metas{
+    background-color: #b4b7b8;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+ }
+ /*fim estilos main*/
 
     </style>
 </head>
@@ -225,7 +312,7 @@ body{
         <p class="p_logo">Freela Jovem</p>
         <ul class="ul_itens">
             <li>
-                <a href="painel_contrato.html">Pagina Inicial</a>
+                <a href="painel_freelancer.html">Pagina Inicial</a>
             </li>
 
             <li>
@@ -271,10 +358,11 @@ body{
 <body>
     <main>
         <div class="main_painel">
+          <div class="pai_estatiscas">
             <div class="din_estatistica">
                 <i class="fa-solid fa-coins"></i>
                 <div class="ganhos">
-                    <p>R$ 00,0</p>
+                    <p>00,0</p>
                     <p>Seus ganhos</p>
                 </div>
             </div>
@@ -301,10 +389,34 @@ body{
                     <p>Views no perfi</p>
                 </div>
             </div>
-
+        </div>
             <div class="left">
-                <div class="perfil_card"></div>
-                <div class="metas_card"></div>
+                <div class="perfil_card">
+                    <div class="top_perfil">
+                        <h1>Meu perfil</h1>
+                        <a href="">Editar</a>
+                    </div>
+                    <div class="pai_estrela">
+                    <h1 id="nome_usuario"></h1>
+                    <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                    <a href="">Seja Premium</a>
+                    </div>
+                </div>
+
+                <div class="metas_card">
+                    <div class="top_metas">
+                        <h3>🎯 Minhas Metas</h3>
+                        <p>Escreva suas metas abaixo:</p>
+                    </div>
+                    <input type="text" id="meta_input" placeholder="Digite sua meta...">
+                    <ul id="lista_metas"></ul>
+                </div>
             </div>
 
             <div class="right">
@@ -318,15 +430,56 @@ body{
 
 <script>
     const btn_logout = document.getElementById('btn_logout')
-    btn_logout.addEventListener('click',(e)=>{
-        fetch('http://localhost:3000/logout',{
-        method:'Post'
+    btn_logout.addEventListener('click', () => {
+        fetch('http://localhost:3000/logout', {
+            method: 'POST'
+        })
+        .then(() => {
+            window.location.href = '/home.html'
+        })
+        .catch(error => {
+            console.error('Erro ao fazer logout:', error)
+        })
     })
-    .then(response => {
-        window.location.href = '/home.html'
+
+    const meta_input = document.getElementById("meta_input")
+    const lista_metas = document.getElementById("lista_metas")
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const metas_salvas = JSON.parse(localStorage.getItem("metas")) || []
+        metas_salvas.forEach(meta => adicionarMeta(meta))
     })
-    .catch(error => {
-        console.error('Erro ao fazer logout:', error)
+
+    meta_input.addEventListener("blur", () => {
+        const texto_meta = meta_input.value.trim()
+        if (texto_meta) {
+            adicionarMeta(texto_meta)
+            salvarMetas()
+            meta_input.value = ""
+        }    
     })
-    })
+
+    function adicionarMeta(meta) {
+        const li = document.createElement("li")
+        li.textContent = meta
+
+        // Criar botão de remover
+        const btnRemover = document.createElement("button")
+        btnRemover.textContent = "❌"
+        btnRemover.classList.add("btn-remover")
+        btnRemover.onclick = () => {
+            li.remove()
+            salvarMetas()
+        }
+
+        li.appendChild(btnRemover)
+        lista_metas.appendChild(li)
+    }
+
+    function salvarMetas() {
+        const metas = [...lista_metas.querySelectorAll("li")].map(li => 
+            li.childNodes[0].nodeValue.trim()
+        )
+        localStorage.setItem("metas", JSON.stringify(metas))
+    }
 </script>
