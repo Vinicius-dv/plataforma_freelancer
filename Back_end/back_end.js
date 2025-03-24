@@ -43,6 +43,21 @@ const cadastro_freelancer_Schema = new mongoose.Schema({
 
 const cadastro_freelancer = mongoose.model('User_freelancer',cadastro_freelancer_Schema)
 
+const cadastro_projeto_Schema = new mongoose.Schema({
+    nome:String,
+    desc_projeto:String
+})
+
+const cadastro_projeto = mongoose.model('User_projeto',cadastro_projeto_Schema)
+
+
+const cadastro_estatistica_Schema = new mongoose.Schema({
+    valor: { type: Number, default: 0 }
+})
+
+const cadastro_estatistica = mongoose.model('User_estatistica',cadastro_estatistica_Schema)
+
+
 app.post('/cadastro_contratante', (req, res) => {
     const {role} = req.body
     if (role !== 'contratante') return res.status(400).send('Role inválido!')
@@ -142,7 +157,7 @@ app.post('/cadastro_freelancer', (req, res) => {
                         });
                     })
                     .catch(err => {
-                        console.log('Erro ao salvar no banco:', err);
+                        console.log('Erro ao salvar no banco:', err)
                         return res.status(500).json({ success: false, message: 'Erro ao salvar os dados no banco!' })
                     })
                 })
@@ -154,6 +169,125 @@ app.post('/cadastro_freelancer', (req, res) => {
     })
 })
 
+app.put('/cadastro_freelancer_upd',(req,res)=>{
+    const {valor_textarea} = req.body
+    cadastro_freelancer.findOneAndUpdate(
+        {},
+        { $set: { nome: valor_textarea } },
+        { new: true }
+    )
+    .then(dados=>{
+        res.status(200).json(dados)
+    })
+})
+
+app.get('/valor',(req,res)=>{
+    cadastro_estatistica.findOne()
+    .then(valor => {
+        console.log(valor)
+        if (!valor) {
+            return res.json({ valor: 0 })
+        }
+        res.json({ valor: valor.valor })
+    })
+    .catch(erro => {
+        console.error(erro)
+        res.status(500).json({ erro: "Erro ao buscar valor" })
+    })
+})
+
+app.get('/info_perfil',(req,res)=>{
+    cadastro_freelancer.findOne()
+    .then(dados=>{
+        if(!dados){
+            return res.status(400).json({message:'Não existe informações salvas',success:false})
+        }
+
+        return res.status(200).json({
+            success:true,
+            dados
+        })
+    })
+})
+
+app.post('/cadastro_estatistica',(req,res)=>{
+    const incremento = Number(req.body.incremento)
+     cadastro_estatistica.findOne()
+     .then(valor=>{
+        if (!valor) {
+            return cadastro_estatistica.create({ valor: incremento })
+        }
+        valor.valor += incremento
+        return valor.save()
+     })
+     .then(valor_atualizado=>{
+        res.json({valor:valor_atualizado})
+     })
+     .catch(erro => {
+        console.error(erro)
+        res.status(500).json({ erro: "Erro ao atualizar estatística" })
+    })
+})
+
+app.post('/cadastro_projeto',(req,res)=>{
+    const { nome, desc_projeto} = req.body
+    const novo_projeto = new cadastro_projeto({
+        nome,
+        desc_projeto
+    })
+    novo_projeto.save()
+    .then(()=>{
+        console.log('projeto publicado com sucesso')
+        return res.status(200).json({
+            success:true,
+            message: 'projeto publicado com sucesso'
+        })
+    })
+    .catch(err => {
+        console.log('Erro ao salvar no banco:', err)
+        return res.status(500).json({ success: false, message: 'Erro ao salvar os dados no banco!'})
+    })
+})
+
+app.get('/info_projeto',(req,res)=>{
+    cadastro_projeto.find()
+    .then(projetos=>{
+        if(!projetos){
+            return res.status(400).json({
+                success:false,
+                message:'Nenhum projeto existente'
+            })
+        }
+        return res.status(200).json({
+            success:true,
+            projetos
+        })
+    })
+})
+
+app.delete('/remover_projeto/:id', (req, res) => {
+    const { id } = req.params
+    cadastro_projeto.findByIdAndDelete(id)
+    .then(projeto => {
+        if (!projeto) {
+            return res.status(400).json({
+                success: false,
+                message: 'Projeto não encontrado'
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: 'Projeto removido com sucesso'
+        })
+    })
+    .catch(err => {
+        console.error('Erro ao remover projeto:', err)
+        return res.status(500).json({
+            success: false,
+            message: 'Erro ao remover o projeto'
+        })
+    })
+})
 
 app.post('/login_contratante',(req,res)=>{
     const nome = req.body.nome
@@ -306,16 +440,23 @@ app.get('/Login_contrato/login_contrato.html',verificar_login_contrato,(req, res
     res.sendFile(path.join(__dirname, '../Login_contrato/login_contrato.html'))
 })
 
+app.get('/Pagina_projetos/projetos.html',verificar_acesso('freelancer'),(req, res,next) => {
+    res.sendFile(path.join(__dirname, '../Pagina_projetos/projetos.html'))
+})
+
 
 app.get('/Login_freelancer/login_freelancer.html',verificar_login_freelancer,(req, res) => {
     res.sendFile(path.join(__dirname, '../Login_freelancer/login_freelancer.html'))
 })
 
+app.get('/Pagina_perfil/perfil.html',(req, res) => {
+    res.sendFile(path.join(__dirname, '../Pagina_perfil/perfil.html'))
+})
 
 app.get('/Painel_contrato/painel_contrato.html', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../Painel_contrato/painel_contrato.html'))
     next()
-}, verificar_acesso('contratante'), (req, res) => {
+},verificar_acesso('contratante'),(req, res) => {
     console.log('Middleware passou, servindo o arquivo')
 })
 
@@ -323,9 +464,11 @@ app.get('/Painel_contrato/painel_contrato.html', (req, res, next) => {
 app.get('/Painel_freelancer/painel_freelancer.html',(req, res, next) => {
     res.sendFile(path.join(__dirname, '../painel_freelancer/painel_freelancer.html'))
     next()
-}, verificar_acesso('freelancer'), (req, res) => {
+},verificar_acesso('freelancer'),(req, res) => {
     console.log('Middleware passou, servindo o arquivo')
 })
+
+
 
 
 app.listen(3000, () => console.log('Servidor rodando na porta 3000'))

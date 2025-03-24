@@ -316,12 +316,12 @@ header{
             </li>
 
             <li>
-                <a href="">Projetos</a>
+                <a href="../Pagina_projetos/projetos.html">Projetos</a>
             </li>
 
             
             <li>
-                <a href="">Perfil</a>
+                <a href="../Pagina_perfil/perfil.html">Perfil</a>
             </li>
 
             <li>
@@ -340,12 +340,12 @@ header{
                 </li>
 
                 <li>
-                    <a href="">Projetos</a>
+                    <a href="../Pagina_projetos/projetos.html">Projetos</a>
                 </li>
 
                 
                 <li>
-                    <a href="">Perfil</a>
+                    <a href="../Pagina_perfil/perfil.html">Perfil</a>
                 </li>
 
                 <li>
@@ -369,7 +369,7 @@ header{
             <div class="proposta_enviada_estatistica">
                 <i class="fa-solid fa-gavel"></i>
                 <div class="proposta_enviada">
-                    <p>0</p>
+                    <p id="valor_proposta">0</p>
                     <p>Proposta enviada</p>
                 </div>
             </div>
@@ -429,6 +429,21 @@ header{
 </html>
 
 <script>
+const menuHamburguer = document.getElementById("menu_hamburguer")
+const mainMobile = document.getElementById("main_mobile")
+const menuItens = document.querySelector(".menu_itens")
+
+menuHamburguer.addEventListener("click", () => {
+    mainMobile.classList.toggle("show")
+    menuItens.classList.toggle("open")
+})
+
+mainMobile.addEventListener('click',(e)=>{
+    if(e.target ===mainMobile){
+        mainMobile.classList.remove('show')
+        menuItens.classList.remove("open")
+    }
+})  
     const btn_logout = document.getElementById('btn_logout')
     btn_logout.addEventListener('click', () => {
         fetch('http://localhost:3000/logout', {
@@ -441,7 +456,6 @@ header{
             console.error('Erro ao fazer logout:', error)
         })
     })
-
     const meta_input = document.getElementById("meta_input")
     const lista_metas = document.getElementById("lista_metas")
 
@@ -482,4 +496,17 @@ header{
         )
         localStorage.setItem("metas", JSON.stringify(metas))
     }
+
+
+    const valor_proposta = document.getElementById('valor_proposta')
+    document.addEventListener('DOMContentLoaded',(e)=>{
+        fetch('http://localhost:3000/valor',{
+            method:'get'
+        })
+        .then(res=>res.json())
+        .then(dados=>{
+            console.log(dados)
+            valor_proposta.textContent = dados.valor
+        })
+    })
 </script>

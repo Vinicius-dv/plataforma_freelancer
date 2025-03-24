@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-<style>
-    *{
+    <style>
+        *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -16,6 +16,7 @@
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
 }
+/*Estilos header*/
 header{
     background-color: #F2FAFC;
 }
@@ -151,8 +152,10 @@ header{
 .main_mobile.show {
     display: block;
 }
-/*Estilos main*/
-.main_projeto{
+ /*fim estilos header*/
+
+ /*Estilos main*/
+ .main_perfil{
     width: 700px;
     height: auto;
     padding: 30px;
@@ -162,25 +165,28 @@ header{
     margin-top: 100px;
 }
 
-.main_projeto h1{
-    font-size: 1.3em;
-    margin-bottom: 30px;
-}
-
-.form_projeto{
+.form_perfil{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 60%;
     justify-content: center;
     align-items: center;
 }
 
-.form_projeto label{
+.form_perfil label{
+    font-size: 1.5em;
+    margin-bottom: 16px;
     margin-top: 18px;
     margin-bottom: 10px;
 }
 
-.form_projeto button{
+.form_perfil input{
+    margin-bottom: 15px;
+    width: 180px;
+}
+
+
+.form_perfil button{
     margin-top: 15px;
     color: white;
     background-color: black;
@@ -190,27 +196,29 @@ header{
     transition: background 0.5s;
 }
 
-.form_projeto button:hover{
+.form_perfil button:hover{
     background-color: rgba(0, 0, 0, 0.437);
 }
-/*Fim estilos main*/
 
-</style>
+.nome_perfil{
+    font-size: 1.4em;
+}
+
+.text_area_nome{
+    margin-left: 13%;
+}
+ /*Fim estilos main*/
+    </style>
     <header>
         <nav style="background-color: rgba(241, 240, 240, 0.353);" class="nav_itens">
             <p class="p_logo">Freela Jovem</p>
             <ul class="ul_itens">
                 <li>
-                    <a href="painel_contrato.html">Pagina Inicial</a>
+                    <a href="../Painel_freelancer/painel_freelancer.html">Pagina Inicial</a>
                 </li>
-
+    
                 <li>
                     <a href="../Pagina_projetos/projetos.html">Projetos</a>
-                </li>
-
-                
-                <li>
-                    <a href="">Perfil</a>
                 </li>
 
                 <li>
@@ -225,18 +233,13 @@ header{
             <div class="menu_itens" id="div_itens">
                 <ul class="ul_mobile">
                     <li>
-                        <a href="painel_contrato.html">Pagina Inicial</a>
+                        <a href="../Painel_freelancer/painel_freelancer.html">Pagina Inicial</a>
                     </li>
     
                     <li>
-                        <a href="">Projetos</a>
+                        <a href="../Pagina_projetos/projetos.html">Projetos</a>
                     </li>
     
-                    
-                    <li>
-                        <a href="">Perfil</a>
-                    </li>
-
                     <li>
                         <a class="btn_logout" id="btn_logout">Sair</a>
                     </li>
@@ -246,18 +249,13 @@ header{
     </header>
 
     <main>
-        <div class="main_projeto">
-            <h1>Crie um Projeto</h1>
-            <form class="form_projeto" action="">
-                 <label for="nome_projeto">De um nome ao seu projeto:</label>
-                 <input type="text" name="nome_projeto" id="nome_projeto">
-                 <label for="desc_projeto">De uma descrição ao seu projeto</label>
-                 <textarea name="desc_projeto" id="desc_projeto"></textarea>
-                 <button id="btn_projeto" class="btn_projeto">Criar Projeto</button>
-            </form>
-            <div style="text-align: center;" id="mensagem"></div>
+        <div class="main_perfil">
+            <form class="form_perfil" action="">
+                <label for="nome_perfil">Clique para alterar seu nome:</label>
+                <p class="nome_perfil" id="nome_perfil"></p>
+            </form>    
         </div>
-        
+        <div style="text-align: center;" id="mensagem"></div>
     </main>
 </body>
 </html>
@@ -277,49 +275,54 @@ mainMobile.addEventListener('click',(e)=>{
         mainMobile.classList.remove('show')
         menuItens.classList.remove("open")
     }
-}) 
-const btn_logout = document.getElementById('btn_logout')
-btn_logout.addEventListener('click',(e)=>{
-    fetch('http://localhost:3000/logout',{
-    method:'Post'
-})
-.then(response => {
-    window.location.href = '/home.html'
-})
-.catch(error => {
-    console.error('Erro ao fazer logout:', error)
-})
-})
+})   
 
-const btn_projeto = document.getElementById('btn_projeto')
-btn_projeto.addEventListener('click',(e)=>{
-    e.preventDefault()
-    const nome = document.getElementById('nome_projeto').value
-    const desc_projeto = document.getElementById('desc_projeto').value
-    const mensagem = document.getElementById('mensagem')
-    fetch('http://localhost:3000/cadastro_projeto',{
-        method:'Post',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-        body:JSON.stringify({nome,desc_projeto}),
+const btn_perfil = document.getElementById('btn_perfil')
+let nome_perfil = document.getElementById('nome_perfil')
+document.addEventListener('DOMContentLoaded',(e)=>{
+    fetch('http://localhost:3000/info_perfil',{
+        method:'get'
     })
-.then(res=>res.json())
-.then((dados)=>{
-    if(dados.success){
-        mensagem.innerText = dados.message
-        mensagem.style.color = 'green'
-        window.location.href = '../Pagina_projetos/projetos.html'
-    }else{
-        mensagem.innerText = dados.message
-        mensagem.style.color = 'red'
-    }
+    .then(res=>res.json())
+    .then(info=>{
+        if(info.success){
+            nome_perfil.textContent = info.dados.nome
+            console.log(info.dados.nome)
+            const form_perfil = document.getElementById('form_perfil')
+            nome_perfil.addEventListener('click',()=>{
+            const text_area_nome = document.createElement('textarea')
+            text_area_nome.classList.add('text_area_nome')
+            text_area_nome.textContent = info.dados.nome
+            console.log(text_area_nome)
+            document.body.appendChild(text_area_nome)
+            text_area_nome.addEventListener('blur',(e)=>{
+                const valor_textarea = text_area_nome.value
+                nome_perfil.textContent = valor_textarea
+                fetch('http://localhost:3000/cadastro_freelancer_upd',{
+                    method:'PUT',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({valor_textarea})
+                })
+                .then(res=>res.json())
+                .then(dados=>{
+                    if(dados.success){
+                        console.log(dados)
+                    }
+                })
+                .catch(err=>{
+                    console.log('algo deu errado',err)
+                })
+                text_area_nome.remove()
+            })
 })
-.catch(error => {
-    console.error('Erro de rede:', error)
-    alert('Erro ao fazer a requisição!')
-})
+        }
+    })
 })
 
 
+/*btn_perfil.addEventListener('click',(e)=>{
+    e.preventDefault()
+})*/
 </script>
