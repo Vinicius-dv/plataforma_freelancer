@@ -6,7 +6,7 @@ Uma plataforma simples e eficiente para conectar **freelancers** e **contratante
 
 O **Freela Jovem** permite que usuários se cadastrem como **freelancers** ou **contratantes**, criando uma rede de oportunidades. O sistema é seguro, leve e responsivo — ideal para quem busca um projeto direto ao ponto e com boas práticas no backend.
 
-[🔗 Veja o projeto aqui]([https://vinicius-dv.github.io/plataforma_freelancer/principal/home.html])
+[🔗 Veja o projeto aqui](https://vinicius-dv.github.io/plataforma_freelancer/principal/home.html)
 
 ## 🚀 Tecnologias utilizadas
 
