@@ -48,3 +48,4 @@ npm install
 
 # Inicie o servidor
 node back_end.js
+# Acesse localhost:3000/home.html
