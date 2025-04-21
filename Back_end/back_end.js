@@ -12,14 +12,11 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../Cadastro')))
 app.use(express.static(path.join(__dirname, '../Criar_conta')))
 app.use(express.static(path.join(__dirname, '../principal')))
+
 app.use(cors({
-
-}))
-
-/*app.use(cors({
     origin: 'http://127.0.0.1:5500',
     credentials: true
-}))*/
+}))
 
 mongoose.connect('mongodb://127.0.0.1:27017/plataforma_freelancer', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Conectado ao MongoDB!'))
@@ -462,7 +459,7 @@ app.get('/Painel_contrato/painel_contrato.html', (req, res, next) => {
 
 
 app.get('/Painel_freelancer/painel_freelancer.html',(req, res, next) => {
-    res.sendFile(path.join(__dirname, '../painel_freelancer/painel_freelancer.html'))
+    res.sendFile(path.join(__dirname, '../Painel_freelancer/painel_freelancer.html'))
     next()
 },verificar_acesso('freelancer'),(req, res) => {
     console.log('Middleware passou, servindo o arquivo')
