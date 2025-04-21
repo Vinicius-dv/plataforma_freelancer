@@ -469,6 +469,4 @@ app.get('/Painel_freelancer/painel_freelancer.html',(req, res, next) => {
 })
 
 
-
-
 app.listen(3000, () => console.log('Servidor rodando na porta 3000'))
