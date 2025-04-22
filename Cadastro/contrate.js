@@ -37,7 +37,7 @@ fetch('http://localhost:3000/cadastro_contratante',{
     if(dados.success){
         mensagem.innerText = dados.message
         mensagem.style.color = 'green'
-        window.location.href = 'login_contrato.html'
+        window.location.href = '../Login_contrato/login_contrato.html'
     }else{
         mensagem.innerText = dados.message
         mensagem.style.color = 'red'

@@ -18,10 +18,8 @@ button_cadastro.addEventListener('click',(e)=>{
     const contrato = document.getElementById('contrato').checked
     const freelancer = document.getElementById('freela').checked
     if(contrato){
-        window.location.href = '/Cadastro/contrate.html'
-        console.log('você clicou')
+        window.location.href = 'contrate.html'
     }else if(freelancer){
-        window.location.href = '/Cadastro/freelancer.html'
-         console.log('você clicou')
+        window.location.href = 'freelancer.html'
     }
 })

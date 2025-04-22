@@ -13,10 +13,7 @@ app.use(express.static(path.join(__dirname, '../Cadastro')))
 app.use(express.static(path.join(__dirname, '../Criar_conta')))
 app.use(express.static(path.join(__dirname, '../principal')))
 
-app.use(cors({
-    origin: 'http://127.0.0.1:5500',
-    credentials: true
-}))
+app.use(cors())
 
 mongoose.connect('mongodb://127.0.0.1:27017/plataforma_freelancer', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Conectado ao MongoDB!'))
@@ -287,13 +284,12 @@ app.delete('/remover_projeto/:id', (req, res) => {
 })
 
 app.post('/login_contratante',(req,res)=>{
-    const nome = req.body.nome
     const email = req.body.email
     const senha = req.body.senha
     const {role} = req.body
     if (role !== 'contratante') return res.status(400).send('Role inválido!')
 
-    cadastro_contratante.findOne({email,nome,role})
+    cadastro_contratante.findOne({email,role})
     .then(usuario=>{
         if(!usuario){  
             return res.status(400).json({
@@ -334,13 +330,12 @@ app.post('/login_contratante',(req,res)=>{
 
 
 app.post('/login_freelancer',(req,res)=>{
-    const nome = req.body.nome
     const email = req.body.email
     const senha = req.body.senha
     const {role} = req.body
     if (role !== 'freelancer') return res.status(400).send('Role inválido!')
 
-    cadastro_freelancer.findOne({email,nome,role})
+    cadastro_freelancer.findOne({email,role})
     .then(usuario=>{
         if(!usuario){  
             return res.status(400).json({
@@ -384,17 +379,19 @@ app.post('/logout', (req, res) => {
     res.redirect('/Criar_conta')
 })
 
-function verificar_acesso(role){
-    return (req,res,next)=>{
-        const token = req.cookies.token
-        if(!token){
-            return res.status(401).send('acesso negado')
-        }
-        const decoded = jwt.verify(token,'peixe')
-        req.user = decoded
-        if(req.user.role!=role)return res.status(403).send('acesso proibido')
-        next()
+const verificar_token = (req, res, next) => {
+    const token = req.cookies.token
+    if (!token) {
+        return res.status(403).json({ success: false, message: 'Token não fornecido!' })
     }
+
+    jwt.verify(token, 'peixe', (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ success: false, message: 'Token inválido!' })
+        }
+        req.user = decoded
+        next()
+    })
 }
 
 function verificar_login_contrato(req,res,next){
@@ -437,7 +434,7 @@ app.get('/Login_contrato/login_contrato.html',verificar_login_contrato,(req, res
     res.sendFile(path.join(__dirname, '../Login_contrato/login_contrato.html'))
 })
 
-app.get('/Pagina_projetos/projetos.html',verificar_acesso('freelancer'),(req, res,next) => {
+app.get('/Pagina_projetos/projetos.html',verificar_token,(req, res,next) => {
     res.sendFile(path.join(__dirname, '../Pagina_projetos/projetos.html'))
 })
 
@@ -446,23 +443,17 @@ app.get('/Login_freelancer/login_freelancer.html',verificar_login_freelancer,(re
     res.sendFile(path.join(__dirname, '../Login_freelancer/login_freelancer.html'))
 })
 
-app.get('/Pagina_perfil/perfil.html',(req, res) => {
+app.get('/Pagina_perfil/perfil.html',verificar_login_contrato,verificar_login_freelancer,(req, res) => {
     res.sendFile(path.join(__dirname, '../Pagina_perfil/perfil.html'))
 })
 
-app.get('/Painel_contrato/painel_contrato.html', (req, res, next) => {
+app.get('/Painel_contrato/painel_contrato.html', verificar_token, (req, res) => {
     res.sendFile(path.join(__dirname, '../Painel_contrato/painel_contrato.html'))
-    next()
-},verificar_acesso('contratante'),(req, res) => {
-    console.log('Middleware passou, servindo o arquivo')
 })
 
 
-app.get('/Painel_freelancer/painel_freelancer.html',(req, res, next) => {
+app.get('/Painel_freelancer/painel_freelancer.html', verificar_token, (req, res) => {
     res.sendFile(path.join(__dirname, '../Painel_freelancer/painel_freelancer.html'))
-    next()
-},verificar_acesso('freelancer'),(req, res) => {
-    console.log('Middleware passou, servindo o arquivo')
 })
 
 

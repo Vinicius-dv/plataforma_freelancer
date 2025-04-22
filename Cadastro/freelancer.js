@@ -38,7 +38,7 @@ button_cadastro.addEventListener('click',()=>{
         if(dados.success){
             mensagem.innerText = dados.message
             mensagem.style.color = 'green'
-            window.location.href = 'login_freelancer.html'
+            window.location.href = 'Login_freelancer/login_freelancer.html'
         }else{
             mensagem.innerText = dados.message
             mensagem.style.color = 'red'
