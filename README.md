@@ -18,7 +18,7 @@ O **Freela Jovem** permite que usuários se cadastrem como **freelancers** ou **
 
 ## 🔐 Funcionalidades
 
-- Cadastro e login com autenticação segura
+- Cadastro e login com autenticação segura.
 - Perfis para freelancers e contratantes
 - Criação e edição de perfis
 - Freelancers podem criar posts (vagas/serviços)
