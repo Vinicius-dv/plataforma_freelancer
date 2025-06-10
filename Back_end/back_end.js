@@ -379,6 +379,7 @@ app.post('/logout', (req, res) => {
     res.redirect('/Criar_conta')
 })
 
+//Middlewares
 const verificar_token = (req, res, next) => {
     const token = req.cookies.token
     if (!token) {
@@ -428,8 +429,10 @@ function verificar_login_freelancer(req,res,next){
     }
 }
 
+//Fim middlewares
 
 
+//Rotas
 app.get('/Login_contrato/login_contrato.html',verificar_login_contrato,(req, res,next) => {
     res.sendFile(path.join(__dirname, '../Login_contrato/login_contrato.html'))
 })
@@ -455,6 +458,6 @@ app.get('/Painel_contrato/painel_contrato.html', verificar_token, (req, res) => 
 app.get('/Painel_freelancer/painel_freelancer.html', verificar_token, (req, res) => {
     res.sendFile(path.join(__dirname, '../Painel_freelancer/painel_freelancer.html'))
 })
-
+//Fim rotas
 
 app.listen(3000, () => console.log('Servidor rodando na porta 3000'))
